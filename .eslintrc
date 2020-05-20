@@ -33,12 +33,10 @@
 		"react/jsx-indent": [
 			"error",
 			"tab",
-			{
-				"checkAttributes": true,
-				"indentLogicalExpressions": true
-			}
+			{ "checkAttributes": true, "indentLogicalExpressions": true }
 		],
-		"react/jsx-props-no-spreading": "off"
+		"react/jsx-props-no-spreading": "off",
+		"react/prop-types": "off"
 	},
 	"settings": {
 		"import/resolver": {
