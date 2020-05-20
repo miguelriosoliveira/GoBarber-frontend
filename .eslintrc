@@ -21,10 +21,24 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+	"plugins": [
+		"react",
+		"react-hooks",
+		"@typescript-eslint",
+		"prettier",
+		"eslint-plugin-import-helpers"
+	],
 	"rules": {
 		"@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
 		"import/extensions": ["error", "ignorePackages", { "ts": "never", "tsx": "never" }],
+		"import-helpers/order-imports": [
+			"error",
+			{
+				"newlinesBetween": "always",
+				"groups": ["/^react/", "module", "parent", "sibling", "index"],
+				"alphabetize": { "order": "asc", "ignoreCase": true }
+			}
+		],
 		"import/prefer-default-export": "off",
 		"prettier/prettier": "error",
 		"react-hooks/exhaustive-deps": "warn",
