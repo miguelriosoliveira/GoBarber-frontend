@@ -49,6 +49,7 @@
 			"tab",
 			{ "checkAttributes": true, "indentLogicalExpressions": true }
 		],
+		"react/jsx-indent-props": ["warn", "tab"],
 		"react/jsx-props-no-spreading": "off",
 		"react/prop-types": "off"
 	},
