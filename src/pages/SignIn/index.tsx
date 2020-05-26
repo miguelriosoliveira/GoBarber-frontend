@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useContext } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import logo from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import { Container, Content, Background } from './styles';
@@ -22,8 +22,7 @@ interface FormData {
 const SignIn: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
 
-	const { user, signIn } = useContext(AuthContext);
-	console.log(user);
+	const { signIn } = useAuth();
 
 	const onSubmit = useCallback(
 		async (data: FormData) => {
