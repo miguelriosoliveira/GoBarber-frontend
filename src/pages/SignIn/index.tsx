@@ -45,7 +45,11 @@ const SignIn: React.FC = () => {
 					formRef.current?.setErrors(errors);
 				}
 
-				addToast();
+				addToast({
+					type: 'error',
+					title: 'Falha ao tentar logar',
+					description: 'Tente novamente com as credenciais corretas',
+				});
 			}
 		},
 		[signIn, addToast],
