@@ -1,7 +1,6 @@
 import React from 'react';
 
-import ToastContainer from './components/ToastContainer';
-import { AuthProvider } from './hooks/AuthContext';
+import AppProvider from './hooks';
 import Routes from './routes';
 import GlobalStyle from './styles/global';
 
@@ -9,12 +8,9 @@ const App: React.FC = () => {
 	return (
 		<>
 			<GlobalStyle />
-
-			<AuthProvider>
+			<AppProvider>
 				<Routes />
-			</AuthProvider>
-
-			<ToastContainer />
+			</AppProvider>
 		</>
 	);
 };

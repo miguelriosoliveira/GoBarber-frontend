@@ -12,13 +12,13 @@ interface Credentials {
 	password: string;
 }
 
-interface AuthContextProps {
+interface AuthContextData {
 	user: object;
 	signIn(credentials: Credentials): Promise<void>;
 	signOut(): void;
 }
 
-const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
 	const [data, setData] = useState<State>(() => {
@@ -53,7 +53,7 @@ const AuthProvider: React.FC = ({ children }) => {
 	);
 };
 
-function useAuth(): AuthContextProps {
+function useAuth(): AuthContextData {
 	const context = useContext(AuthContext);
 	if (!context) {
 		throw new Error('useAuth must be used within an AuthProvider');

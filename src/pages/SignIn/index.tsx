@@ -9,7 +9,8 @@ import * as Yup from 'yup';
 import logo from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import { Container, Content, Background } from './styles';
@@ -23,6 +24,7 @@ const SignIn: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
 
 	const { signIn } = useAuth();
+	const { addToast } = useToast();
 
 	const onSubmit = useCallback(
 		async (data: FormData) => {
@@ -36,15 +38,17 @@ const SignIn: React.FC = () => {
 
 				await schema.validate(data, { abortEarly: false });
 
-				signIn({ email: data.email, password: data.password });
+				await signIn({ email: data.email, password: data.password });
 			} catch (err) {
 				if (err instanceof Yup.ValidationError) {
 					const errors = getValidationErrors(err);
 					formRef.current?.setErrors(errors);
 				}
+
+				addToast();
 			}
 		},
-		[signIn],
+		[signIn, addToast],
 	);
 
 	return (
