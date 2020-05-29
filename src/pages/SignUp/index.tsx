@@ -11,7 +11,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import { Container, Content, Background } from './styles';
+import { Container, Content, AnimatedContent, Background } from './styles';
 
 const SignUp: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
@@ -28,8 +28,8 @@ const SignUp: React.FC = () => {
 
 			await schema.validate(data, { abortEarly: false });
 		} catch (err) {
-			console.log(err);
-			formRef.current?.setErrors(getValidationErrors(err));
+			const errors = getValidationErrors(err);
+			formRef.current?.setErrors(errors);
 		}
 	}, []);
 
@@ -38,22 +38,24 @@ const SignUp: React.FC = () => {
 			<Background />
 
 			<Content>
-				<img src={logo} alt="GoBarber logo" />
+				<AnimatedContent>
+					<img src={logo} alt="GoBarber logo" />
 
-				<Form ref={formRef} onSubmit={onSubmit}>
-					<h1>Faça seu cadastro</h1>
+					<Form ref={formRef} onSubmit={onSubmit}>
+						<h1>Faça seu cadastro</h1>
 
-					<Input name="name" icon={FiUser} placeholder="Nome" />
-					<Input name="email" icon={FiMail} placeholder="E-mail" />
-					<Input name="password" icon={FiLock} type="password" placeholder="Senha" />
+						<Input name="name" icon={FiUser} placeholder="Nome" />
+						<Input name="email" icon={FiMail} placeholder="E-mail" />
+						<Input name="password" icon={FiLock} type="password" placeholder="Senha" />
 
-					<Button type="submit">Cadastrar</Button>
-				</Form>
+						<Button type="submit">Cadastrar</Button>
+					</Form>
 
-				<Link to="/signin">
-					<FiArrowLeft />
-					Voltar para logon
-				</Link>
+					<Link to="/">
+						<FiArrowLeft />
+						Voltar para logon
+					</Link>
+				</AnimatedContent>
 			</Content>
 		</Container>
 	);
